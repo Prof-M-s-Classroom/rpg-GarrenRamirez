@@ -1,7 +1,7 @@
 import openai
 import os
 
-openai.api_key = "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"
+openai.api_key = "[Insert OpenAI API Key Here]"
 
 def generate_rpg_story():
     client = openai.OpenAI(api_key=openai.api_key)
