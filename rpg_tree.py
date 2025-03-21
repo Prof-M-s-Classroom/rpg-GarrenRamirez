@@ -1,7 +1,6 @@
 class StoryNode:
     """Represents a node in the decision tree."""
     def __init__(self, event_number, description, left=None, right=None):
-
         self.event_number = event_number
         self.description = description
         self.left = left
@@ -43,38 +42,39 @@ class GameDecisionTree:
             print("\n" + current_node.description)
 
             if current_node.left is None and current_node.right is None:
-                print("Your story ends here.")  
+                print("Your story ends here.")
                 break
 
             decision = input("Enter 1 or 2: ").strip()
-            
+
             if decision == "1" and current_node.left:
                 current_node = current_node.left
-                
+
             elif decision == "2" and current_node.right:
                 current_node = current_node.right
-                
+
             else:
                 print("Invalid decision. Please enter 1 or 2.")
+
 
 def load_story(filename, game_tree):
     """Load story from a file and construct the decision tree."""
     try:
         with open(filename, "r") as file:
             for line in file:
-                
+
                 parts = line.strip().split(" | ")
-                
+
                 if len(parts) != 4:
                     print(f"Skipping invalid line: {line}")
                     continue
 
                 game_tree.insert(int(parts[0]), parts[1], int(parts[2]), int(parts[3]))
-                
+
     except ValueError:
         print("Error: Invalid Data Format in File.")
         exit(1)
-        
+
     except FileNotFoundError:
         print(f"Error: File not found.")
         exit(1)
